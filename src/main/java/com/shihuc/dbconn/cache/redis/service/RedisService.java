@@ -14,6 +14,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -199,7 +200,6 @@ public class RedisService implements RedisApi,InitializingBean {
         return redisTemplate.getExpire(key, timeUnit);
     }
 
-
     /**
      * 初始化设置 valueSerializer 采用GenericJackson2JsonRedisSerializer
      */
@@ -212,5 +212,6 @@ public class RedisService implements RedisApi,InitializingBean {
         redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
         redisTemplate.afterPropertiesSet();
     }
+
 
 }

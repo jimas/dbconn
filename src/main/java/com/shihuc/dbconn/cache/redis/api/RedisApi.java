@@ -54,7 +54,6 @@ public interface RedisApi {
     public abstract  Long getExpire(String key, TimeUnit timeUnit); 
     /**
      * 添加key value
-     * 
      * @param key
      * @param value
      */
@@ -102,6 +101,4 @@ public interface RedisApi {
      * @return
      */
     public abstract String ping();
-
-
 }
