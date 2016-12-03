@@ -1,5 +1,7 @@
 package com.jimas.dbconn.dao.mongo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -24,6 +26,10 @@ public class MongoUserRepository {
 	}
 	
 	public void addUser(MongoUser user){
-		mongoTemplate.insert(user);
+		mongoTemplate.save(user);
+	}
+	
+	public List<MongoUser> getUserList(){
+	    return mongoTemplate.findAll(MongoUser.class);
 	}
 }

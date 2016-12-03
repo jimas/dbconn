@@ -1,5 +1,7 @@
 package com.jimas.dbconn.service.mongo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,8 @@ public class MongoUserService {
 	
 	public MongoUser getUser(String username){
 		return mongoUserRepository.getUser(username);
+	}
+	public List<MongoUser> getUserList(){
+	    return mongoUserRepository.getUserList();
 	}
 }

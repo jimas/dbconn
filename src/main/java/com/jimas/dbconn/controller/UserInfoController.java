@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jimas.dbconn.pojo.mongo.MongoUser;
 import com.jimas.dbconn.pojo.mysql.MysqlUser;
 import com.jimas.dbconn.repository.entity.UserInfo;
 import com.jimas.dbconn.service.UserInfoService;
+import com.jimas.dbconn.service.mongo.MongoUserService;
 import com.jimas.dbconn.service.mysql.MysqlUserService;
 @Controller
 public class UserInfoController {
@@ -21,6 +23,8 @@ public class UserInfoController {
     private MysqlUserService userService;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private MongoUserService mongoUserService;
     @RequestMapping("/test")
     public @ResponseBody String test() {
         MysqlUser loaded = userService.findById(1);
@@ -55,5 +59,17 @@ public class UserInfoController {
         List<UserInfo> findAll = userInfoService.findAll();
         System.out.println(findAll);
         return findAll;
+    }
+    @RequestMapping("/findMongodb")
+    @Cacheable(value="mongoUser",keyGenerator="wiselyKeyGenerator")
+    public @ResponseBody List<MongoUser> findFromMongodb() {
+        List<MongoUser> userList = mongoUserService.getUserList();
+        return userList;
+    }
+    @RequestMapping("/addMongodb")
+    public @ResponseBody MongoUser addMongodb() {
+        MongoUser user=new MongoUser("jimas", "工程师", 26, "bozhou");
+        mongoUserService.addUser(user);
+        return user;
     }
 }
