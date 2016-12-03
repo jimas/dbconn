@@ -1,5 +1,7 @@
 package com.jimas.dbconn.sourceconfig.mongo;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
@@ -12,6 +14,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.WriteConcern;
 
@@ -51,10 +54,10 @@ public class MongoDataSourceConfig extends AbstractMongoConfiguration{
 	@Bean(name = "mongods")
 	public Mongo mongo() throws Exception {
 		ServerAddress serverAdress = new  ServerAddress(dbhost, Integer.valueOf(dbport));        
-//		MongoCredential credential = MongoCredential.createMongoCRCredential(username, dbname , password.toCharArray());
+		MongoCredential credential = MongoCredential.createMongoCRCredential(username, dbname , password.toCharArray());
 		//Do not use new Mongo(), is deprecated.
-	    Mongo mongo =  new MongoClient(serverAdress);//非用户名 密码认证
-//	    Mongo mongo =  new MongoClient(serverAdress, Arrays.asList(credential));
+//	    Mongo mongo =  new MongoClient(serverAdress);//非用户名 密码认证
+	    Mongo mongo =  new MongoClient(serverAdress, Arrays.asList(credential));
 	    mongo.setWriteConcern(WriteConcern.SAFE);
 	    return mongo;
 	}

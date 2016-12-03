@@ -158,7 +158,7 @@
 							<outputDirectory>${project.build.directory}/classes</outputDirectory>
 							<resources>
 								<resource>
-									<directory>config/${package.target}</directory>
+									<directory>Config/${package.target}</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
