@@ -31,4 +31,8 @@ public class MongoUser extends User{
 		this.age = age;
 		this.hometown = hometown;
 	}
+	
+	public MongoUser(){
+	    
+	}
 }
