@@ -11,6 +11,7 @@ import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCachePrefix;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -32,6 +33,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 // 启用缓存，这个注解很重要；
 public class RedisCacheConfig extends CachingConfigurerSupport {
 
+    private static final long defaultTime = 60*60;//默认缓存一个小时
+
     /**
      * 缓存管理器.
      * 
@@ -44,6 +47,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
         Map<String, Long> map = new HashMap<String, Long>();
         map.put("test", 60L);
         rcm.setExpires(map);
+        rcm.setDefaultExpiration(defaultTime);
         return rcm;
     }
 

@@ -61,7 +61,7 @@ public class UserInfoController {
         return findAll;
     }
     @RequestMapping("/findMongodb")
-    @Cacheable(value="mongoUser",keyGenerator="wiselyKeyGenerator")
+    @Cacheable(value="mongoUser",keyGenerator="wiselyKeyGenerator",condition="")
     public @ResponseBody List<MongoUser> findFromMongodb() {
         List<MongoUser> userList = mongoUserService.getUserList();
         return userList;

@@ -55,7 +55,7 @@ public class RedisServiceTest extends BaseTest {
 
     @Test
     public void testGet() {
-        String key="com.shihuc.dbconn.service.UserInfoService.findAll()";
+        String key="com.jimas.dbconn.controller.UserInfoController.findFromMongodb()";
         System.out.println(service.get(key));
     }
 
@@ -81,7 +81,7 @@ public class RedisServiceTest extends BaseTest {
     }
     @Test
     public void testGetExpire() {
-        String key="test1";
+        String key="com.jimas.dbconn.controller.UserInfoController.findFromMongodb()";
         TimeUnit timeUnit=TimeUnit.SECONDS;
         System.out.println(service.getExpire(key, timeUnit));
     }
