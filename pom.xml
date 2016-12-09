@@ -88,7 +88,11 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.6</version>
 		</dependency>
-		
+		 <!-- Thymeleaf 模板支持 -->
+   <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-thymeleaf</artifactId>
+	</dependency>
   </dependencies>
   
   <profiles>
