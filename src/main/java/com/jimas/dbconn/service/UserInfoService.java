@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,5 +46,6 @@ public class UserInfoService implements UserInfoApi{
         logger.info("从数据库中获取列表");
        return  mapper.selectByExample(null);
     }
+
     
 }
