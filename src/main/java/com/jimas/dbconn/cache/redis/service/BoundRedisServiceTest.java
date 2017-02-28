@@ -1,12 +1,9 @@
 package com.jimas.dbconn.cache.redis.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.jimas.dbconn.api.UserInfoApi;
 import com.jimas.dbconn.cache.redis.api.BoundRedisApi;
 import com.jimas.dbconn.pojo.User;

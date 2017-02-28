@@ -16,7 +16,7 @@ import com.jimas.dbconn.service.UserInfoService;
 import com.jimas.dbconn.service.mongo.MongoUserService;
 import com.jimas.dbconn.service.mysql.MysqlUserService;
 @Controller
-public class UserInfoController {
+public class UserInfoController extends BaseController {
 
     private static final Logger logger=Logger.getLogger(UserInfoController.class);
     @Autowired

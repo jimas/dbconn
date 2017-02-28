@@ -14,7 +14,7 @@ import org.springframework.context.annotation.PropertySources;
  */
 @SpringBootApplication
 @PropertySources({ @PropertySource(value = "classpath:dbconn.properties")})
-
+//@ImportResource({ "classpath:spring/cxf-client.xml" })
 public class DbConnApp 
 {
     private static final Logger logger=Logger.getLogger(DbConnApp.class);
