@@ -1,4 +1,4 @@
-package com.jimas.dbconn.service.mongo;
+package com.jimas.dbconn.cache.redis.service;
 
 import java.util.ArrayList;
 import java.util.List;
