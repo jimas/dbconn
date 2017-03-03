@@ -1,11 +1,11 @@
 body{
-    font-family:Menlo,Monaco,Consolas,"Helvetica Neue",Helvetica,"Courier New",'å¾®è½¯é›…é»‘', monospace, Arial,sans-serif,'é»‘ä½“';
+    font-family:Menlo,Monaco,Consolas,"Helvetica Neue",Helvetica,"Courier New",'微软雅黑', monospace, Arial,sans-serif,'黑体';
     color: #555;
 }
 a{
     display: inline-block;
     text-decoration: none;
-    font-family: Menlo,Monaco,Consolas,'å¾®è½¯é›…é»‘';
+    font-family: Menlo,Monaco,Consolas,'微软雅黑';
     color: #29abe2;
 }
 .green{
@@ -42,7 +42,7 @@ a:hover{
 .navi{
     padding:5px 20px;
     font-size:14px;
-    font-weight:bold;font-family:Menlo,Monaco,Consolas,"Courier New",monospace, "Helvetica Neue",Helvetica,Arial,sans-serif,'å¹¼åœ†'
+    font-weight:bold;font-family:Menlo,Monaco,Consolas,"Courier New",monospace, "Helvetica Neue",Helvetica,Arial,sans-serif,'幼圆'
 }
 .navi a{
     padding: 0px 20px;
