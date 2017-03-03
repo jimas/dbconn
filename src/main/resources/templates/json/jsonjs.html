@@ -1,0 +1,18 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="jsonjs">
+
+	<!-- core js -->
+	<div th:include="common/corejs :: corejs" th:remove="tag" />
+	
+	<script src="jquery/jquery.numberedtextarea.js"></script>
+	<script src="jquery/jquery.message.js"></script>
+	<script src="jquery/jquery.json.js"></script>
+	<script src="jquery/jquery.json2xml.js"></script>
+	<script src="jquery/jquery.xml2json.js"></script>
+	<script src="js/jsonlint.js"></script>
+	<script src="js/jsonUtil.js"></script>
+
+</div>
+</html>
