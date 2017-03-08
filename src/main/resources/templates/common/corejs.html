@@ -2,10 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="corejs">
-
-
 	<script src="/jquery/jquery.min.js"></script>
 	<script src="/bootstrap/js/bootstrap.min.js"></script>
-
+	<script src="/js/base.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var jsi18n = {
+			close : "关闭",
+			tips : "提示",
+			makeSure : "确定",
+			cancle : "取消",
+			title : "标题",
+			disposes : "处理中..."
+		};
+		Utils.initjs_i18n(jsi18n);
+	});
+</script>
 </div>
 </html>

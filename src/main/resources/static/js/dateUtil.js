@@ -24,6 +24,15 @@ $(function(){
 	//时间截转换日期
 	$('#times_tamp_to_times_date').click(function(){
 		var times_tamp=$('#times_tamp').val();
+		times_tamp = times_tamp.replace(/(^\s*)|(\s*$)/g, "");
+		if (/^\d{10}$/.test(times_tamp)) {
+			times_tamp *= 1000;
+		} else if (/^\d{13}$/.test(times_tamp)) {
+			times_tamp = parseInt(times_tamp);
+		} else {
+			Utils.alert('时间戳格式不正确！');
+			return;
+		}
 		var newDate = new Date();
 		newDate.setTime(times_tamp);
 		$('#times_date').val(newDate.format('yyyy-MM-dd hh:mm:ss'));
@@ -33,7 +42,7 @@ $(function(){
 	$('#times_date_to_times_tamp').click(function(){
 		var times_date2=$('#times_date2').val();
 		var timestamp2 = Date.parse(new Date(times_date2));
-		$('#times_tamp2').val(timestamp2);
+		$('#times_tamp2').val(timestamp2/1000);
 	});
 
 	//日期时间差

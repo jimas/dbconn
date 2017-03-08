@@ -19,7 +19,7 @@ public class DateController extends BaseController {
     public String toolsIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         Date date = new Date();
         String now = DateUtil.format(date,DateUtil.DATE_TIME_FORMAT);
-        map.put("times_tamp",date.getTime());
+        map.put("times_tamp",date.getTime()/1000);// 秒级别
         map.put("now", now);
         return "pages/date";
     }
