@@ -2,22 +2,33 @@
 <html lang="zh-CN" class="no-js" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-
+<!--网页编码，要使用的外部文件，自动适应屏幕-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/> -->
+<meta http-equiv="viewport" content="width=device-width, 
+                                     initial-scale=1.0, 
+                                     maximum-scale=5.0, 
+                                     user-scalable=no"/>
+<!-- <meta http-equiv="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" /> -->
 <meta name="description" content="json在线解析"/>
 <meta name="keywords" content="json,xml,json在线解析,json转xml,xml转json,json、xml互转"/>
 <meta name="author" content="jimas.liu"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>home page</title>
 <!-- head -->
-<div th:include="json/jsoncss :: jsoncss" th:remove="tag" />
+<div th:include="common/json/jsoncss :: jsoncss" th:remove="tag" />
 </head>
 <body>
 	<!-- header -->
 	<div th:include="common/header :: header" th:remove="tag" />
 	<!-- nav -->
-	<div th:include="common/nav :: nav" th:remove="tag" />
+	<div class="container" style="margin-top:70px;">
+		<ol class="breadcrumb">
+			<li><a href="#">HOME </a></li>
+
+			<li><a href="#">JSON格式化</a></li>
+		</ol>
+	</div>
 
 	<div class="container">
 		<main class="row-fluid">
@@ -59,7 +70,7 @@
 	<!-- foot -->
 	<div th:include="common/foot :: foot" th:remove="tag" />
 	<!-- json js -->
-	<div th:include="json/jsonjs :: jsonjs" th:remove="tag" />
+	<div th:include="common/json/jsonjs :: jsonjs" th:remove="tag" />
 
 </body>
 </html>
