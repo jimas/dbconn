@@ -1,4 +1,4 @@
-package com.jimas.dbconn.controller.tools;
+package com.jimas.dbconn.controller;
 
 import java.util.Date;
 
@@ -9,13 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jimas.dbconn.controller.BaseController;
 import com.jimas.dbconn.util.DateUtil;
+
 @Controller
-@RequestMapping("/date")
-public class DateController extends BaseController {
-    
-    @RequestMapping("/toolsDate")
+public class ToolsController extends BaseController {
+
+    @RequestMapping("word")
+    public String wordCount(HttpServletRequest request,HttpServletResponse response,ModelMap map){
+        
+        return "pages/word";
+    }
+    @RequestMapping("json")
+    public String jsonFormat(HttpServletRequest request,HttpServletResponse response,ModelMap map){
+        
+        return "pages/json";
+    }
+    @RequestMapping("/date")
     public String toolsIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         Date date = new Date();
         String now = DateUtil.format(date,DateUtil.DATE_TIME_FORMAT);
@@ -23,6 +32,4 @@ public class DateController extends BaseController {
         map.put("now", now);
         return "pages/date";
     }
-    
-    
 }

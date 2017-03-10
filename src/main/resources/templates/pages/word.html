@@ -1,0 +1,95 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-3.dtd">
+<html lang="zh-CN" class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--网页编码，要使用的外部文件，自动适应屏幕-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="viewport"
+	content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" />
+<meta name="description" content="字数在线统计" />
+<meta name="keywords" content="word,字数在线统计" />
+<meta name="author" content="jimas.liu" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>字数在线统计</title>
+<!-- head -->
+<div th:include="common/tools/datecss :: datecss" th:remove="tag" />
+
+<style type="text/css">
+.panel-body p {
+	margin: 10px 0 10px;
+}
+</style>
+</head>
+<body>
+	<!-- header -->
+	<div th:include="common/header :: header" th:remove="tag" />
+	<!-- nav -->
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="#">HOME </a></li>
+
+			<li><a href="#">字数在线统计</a></li>
+		</ol>
+	</div>
+	<!-- body  -->
+	<div class="container">
+		<div class="panel panel-default margin-t-10">
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div
+						class="alert alert-success span twelve xs-twelve green strong counted" style="padding:20px;"></div>
+					<textarea id="box" cols="30" rows="10" class="form-control">看球吧    kanqiuba.xyz</textarea>
+				</div>
+				<div class="col-md-12 btn-group margin-t-10 margin-b-10"
+					style="margin-top: 10px; margin-bottom: 10px;"
+					data-toggle="buttons">
+					<label class="btn btn-success">可选项 »</label> <label
+						class="btn btn-success"><input type="checkbox"
+						id="foreignSupport" class="checkbox" />非 数 字</label>
+				</div>
+				<div class="col-md-12">
+					<table class="table table-striped table-bordered table-hover">
+						<tbody>
+							<tr>
+								<td>Words</td>
+								<td class="strong" id="word_count"></td>
+								<td>Characters</td>
+								<td class="strong" id="character_count"></td>
+							</tr>
+							<tr>
+								<td>Characters (no spaces)</td>
+								<td class="strong" id="character_count_no_spaces"></td>
+								<td>Chinese (中文汉字数)</td>
+								<td class="strong" id="chinese_count_no_spaces"></td>
+							</tr>
+							<tr>
+								<td>Paragraphs(段落)</td>
+								<td class="strong" id="paragraph_count"></td>
+								<td>Sentences</td>
+								<td class="strong" id="sentence_count"></td>
+							</tr>
+							<tr>
+								<td>Avg. Sentence (chars)</td>
+								<td class="strong" id="avg_sentence_chars"></td>
+								<td>Avg. Sentence (words)</td>
+								<td class="strong" id="avg_sentence_words"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- foot -->
+	<div th:include="common/foot :: foot" th:remove="tag" />
+	<!-- core js -->
+	<div th:include="common/corejs :: corejs" th:remove="tag" />
+	<script src="/js/wordUtil.js"></script>
+	
+	
+	
+</body>
+</html>

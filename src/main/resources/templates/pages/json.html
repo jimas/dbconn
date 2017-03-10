@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-3.dtd">
+<html lang="zh-CN" class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--网页编码，要使用的外部文件，自动适应屏幕-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/> -->
+<meta http-equiv="viewport" content="width=device-width, 
+                                     initial-scale=1.0, 
+                                     maximum-scale=5.0, 
+                                     user-scalable=no"/>
+<!-- <meta http-equiv="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" /> -->
+<meta name="description" content="json在线解析"/>
+<meta name="keywords" content="json,xml,json在线解析,json转xml,xml转json,json、xml互转"/>
+<meta name="author" content="jimas.liu"/>
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>json format</title>
+<!-- head -->
+<div th:include="common/json/jsoncss :: jsoncss" th:remove="tag" />
+</head>
+<body>
+	<!-- header -->
+	<div th:include="common/header :: header" th:remove="tag" />
+	<!-- nav -->
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="#">HOME </a></li>
+
+			<li><a href="#">JSON格式化</a></li>
+		</ol>
+	</div>
+
+	<div class="container">
+		<main class="row-fluid">
+		<div class="col-md-5" style="padding: 0;">
+			<textarea id="json-src" placeholder="在此输入json字符串或XML字符串..."
+				class="form-control"
+				style="height: 553px; padding: 0 10px 10px 20px; border: 0; border-right: solid 1px #ddd; border-bottom: solid 1px #ddd; border-radius: 0; resize: none; outline: none;">{&#13;"Json解析":"支持格式化高亮折叠",&#13;"支持XML转换":"支持XML转换Json,Json转XML",&#13;"Json格式验证":"更详细准确的错误信息" 
+				</textarea>
+		</div>
+		<div class="col-md-7" style="padding: 0;">
+			<div
+				style="padding: 10px; font-size: 16px; border-bottom: solid 1px #ddd;"
+				class="navi">
+				<a href="#" class="tip zip" title="压缩" data-placement="bottom"><i
+					class="fa fa-database"></i></a> <a href="#" class="tip xml"
+					title="转XML" data-placement="bottom"><i
+					class="fa fa-file-excel-o"></i></a> <a href="#" class="tip shown"
+					title="显示行号" data-placement="bottom"><i
+					class="glyphicon glyphicon-sort-by-order"></i></a> <a href="#"
+					class="tip clear" title="清空" data-placement="bottom"><i
+					class="fa fa-trash"></i></a> <a href="#" class="tip save" title="保存"
+					data-placement="bottom"><i class="fa fa-floppy-o"></i></a>
+			</div>
+			<div id="right-box"
+				style="height: 510px; border-right: solid 1px #ddd; border-bottom: solid 1px #ddd; border-radius: 0; resize: none; overflow-y: scroll; outline: none; position: relative;">
+				<div id="line-num"
+					style="background-color: #fafafa; padding: 0px 8px; float: left; border-right: dashed 1px #eee; display: none; z-index: -1; color: #999; position: absolute; text-align: center; over-flow: hidden;">
+					<div>0</div>
+				</div>
+				<div class="ro" id="json-target" style="padding: 0px 25px;"></div>
+			</div>
+			<form id="form-save" method="POST">
+				<input type="hidden" value="" id="txt-content" name="content" />
+			</form>
+		</div>
+		<br style="clear: both;" />
+		</main>
+	</div>
+	<!-- foot -->
+	<div th:include="common/foot :: foot" th:remove="tag" />
+	<!-- json js -->
+	<div th:include="common/json/jsonjs :: jsonjs" th:remove="tag" />
+
+</body>
+</html>

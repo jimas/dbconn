@@ -1,13 +1,3 @@
-body{
-    font-family:Menlo,Monaco,Consolas,"Helvetica Neue",Helvetica,"Courier New",'微软雅黑', monospace, Arial,sans-serif,'黑体';
-    color: #555;
-}
-a{
-    display: inline-block;
-    text-decoration: none;
-    font-family: Menlo,Monaco,Consolas,'微软雅黑';
-    color: #29abe2;
-}
 .green{
     color:#0fd59d;
 }
