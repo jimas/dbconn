@@ -6,12 +6,12 @@ import java.util.List;
 import com.google.gson.Gson;
 
 public class GsonUtil {
-    public String toJsonString(Object obj) {
+    public static String toJsonString(Object obj) {
         Gson gson = new Gson();
         return gson.toJson(obj);
     }
 
-    public <T> Object parseJson(String json, Class<T> c) {
+    public static <T> Object parseJson(String json, Class<T> c) {
         Gson gson = new Gson();
         return gson.fromJson(json, c);
     }
