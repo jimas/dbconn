@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySources;
  * @date	Jan 29, 2016
  * 
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"com.jimas.dbconn"})
 @PropertySources({ @PropertySource(value = "classpath:dbconn.properties")})
 //@ImportResource({ "classpath:spring/cxf-client.xml" })
 public class DbConnApp 
