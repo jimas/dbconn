@@ -14,11 +14,11 @@
 				<ul class="nav navbar-nav">
 
 					<li class="active"
-						th:class="(${menu.menuCode} eq ${ancestorCode}) ? (${not #lists.isEmpty(menu.subList)} ? 'dropdown active' :'active') :(${not #lists.isEmpty(menu.subList)} ? 'dropdown' :'') "
+						th:class="(${menu.menuCode} eq ${ancestorCode}) ? (${not #lists.isEmpty(menu.subMenuList)} ? 'dropdown active' :'active') :(${not #lists.isEmpty(menu.subMenuList)} ? 'dropdown' :'') "
 						th:each="menu:${menuList}">
 						<!--  有子菜单 -->
 				   <a th:inline="text" href="#"
-						th:if="${not #lists.isEmpty(menu.subList)}"
+						th:if="${not #lists.isEmpty(menu.subMenuList)}"
 						th:href="${menu.menuUrl}" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">
@@ -26,8 +26,8 @@
 					</a>
 
 					<ul class="dropdown-menu"
-						th:if="${not #lists.isEmpty(menu.subList)}">
-						<div th:each="subMenu:${menu.subList}" th:remove="tag">
+						th:if="${not #lists.isEmpty(menu.subMenuList)}">
+						<div th:each="subMenu:${menu.subMenuList}" th:remove="tag">
 							<li><a href="#" th:href="${subMenu.menuUrl}"
 								th:text="${subMenu.menuName}"></a></li>
 							<li role="separator" class="divider"></li>
@@ -35,7 +35,7 @@
 					</ul> 
 					<!--  无子菜单 -->
 				   <a th:inline="text" href="#"
-						th:if="${ #lists.isEmpty(menu.subList)}">
+						th:if="${ #lists.isEmpty(menu.subMenuList)}">
 							[[${menu.menuName}]]<span class="sr-only">(current)</span>
 					</a>
 

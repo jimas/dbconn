@@ -21,7 +21,7 @@ public class Menu implements Serializable{
     private String icon;//菜单icon
     private Integer level;//菜单等级
     
-    private List<Menu> subList;
+    private List<Menu> subMenuList;
     
     public String getMenuName() {
         return menuName;
@@ -71,11 +71,11 @@ public class Menu implements Serializable{
     public void setLevel(Integer level) {
         this.level = level;
     }
-    public List<Menu> getSubList() {
-        return subList;
+    public List<Menu> getSubMenuList() {
+        return subMenuList;
     }
-    public void setSubList(List<Menu> subList) {
-        this.subList = subList;
+    public void setSubMenuList(List<Menu> subMenuList) {
+        this.subMenuList = subMenuList;
     }
     @Override
     public String toString() {
@@ -89,11 +89,10 @@ public class Menu implements Serializable{
         if (sortStr != null) builder.append("sortStr=").append(sortStr).append(", ");
         if (icon != null) builder.append("icon=").append(icon).append(", ");
         if (level != null) builder.append("level=").append(level).append(", ");
-        if (subList != null) builder.append("subList=").append(subList);
+        if (subMenuList != null) builder.append("subMenuList=").append(subMenuList);
         builder.append("]");
         return builder.toString();
     }
-    
     
     
     

@@ -80,7 +80,7 @@ public class MenuRsServiceTest extends BaseTest {
         subList.add(word_menu);
         
         
-        tools_menu.setSubList(subList);//该siteSource tools_menu 一级菜单 下的二级菜单
+        tools_menu.setSubMenuList(subList);//该siteSource tools_menu 一级菜单 下的二级菜单
         menuList.add(tools_menu);//该siteSource 某个一级菜单
         menuList.add(home_menu);//该siteSource 某个一级菜单
         rs.setMenuList(menuList);// 该siteSource 全站菜单
