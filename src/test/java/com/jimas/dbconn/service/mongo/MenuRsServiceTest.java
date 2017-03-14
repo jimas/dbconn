@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jimas.dbconn.http.RestService;
+import com.jimas.dbconn.pojo.rest.BaseKeyReq;
 import com.jimas.dbconn.pojo.rest.Menu;
 import com.jimas.dbconn.pojo.rest.MenuPojo;
 import com.jimas.dbconn.pojo.rest.ResultVo;
@@ -16,8 +17,6 @@ import com.jimas.dbconn.util.GsonUtil;
 
 public class MenuRsServiceTest extends BaseTest {
 
-    @Autowired
-    private MenuRsService menuRsService;
     @Autowired
     private RestService restService;
     
@@ -73,8 +72,6 @@ public class MenuRsServiceTest extends BaseTest {
         menuList.add(tools_menu);//该siteSource 某个一级菜单
         menuList.add(home_menu);//该siteSource 某个一级菜单
         rs.setMenuList(menuList);// 该siteSource 全站菜单
-//        menuRsService.saveMenu(rs);
-        String jsonString = GsonUtil.toJsonString(rs);
         String postHttp = restService.postHttp(UrlEnum.MENU_SAVE, rs,rs.getSiteSource());
         System.out.println(postHttp);
     }
@@ -82,8 +79,9 @@ public class MenuRsServiceTest extends BaseTest {
     @Test
     public void testGetMenuRsBySiteSource() {
         String siteSource="dbconn";
-        
-        String json = restService.postHttp(UrlEnum.MENU_QUERY, siteSource,siteSource);
+        BaseKeyReq<String> baseKeyReq = new BaseKeyReq<String>();
+        baseKeyReq.setSiteSource(siteSource);
+        String json = restService.postHttp(UrlEnum.MENU_QUERY, baseKeyReq,siteSource);
         ResultVo parseJson = (ResultVo) GsonUtil.parseJson(json, ResultVo.class);
         if(parseJson.getStatus()==200){
             System.out.println(parseJson.getResult());

@@ -2,20 +2,15 @@ package com.jimas.dbconn.pojo.rest;
 
 import java.io.Serializable;
 import java.util.List;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * @Description 菜单对象
  * @author weqinjia.liu
  * @Date 2017年3月10日
  */
-@Document(collection = "jimasMenu")
 public class MenuPojo implements Serializable{
 
     private static final long serialVersionUID = -8132722404639210032L;
     
-    @Id
     private String siteSource;//来源系统
     
     private List<?> menuList;//菜单列表
