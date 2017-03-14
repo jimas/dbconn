@@ -4,6 +4,8 @@
         {
             "menuName":"工具栏",
             "menuCode":"TOOLS",
+            "parentCode" : "TOOLS", 
+            "ancestorCode" : "TOOLS", 
             "menuUrl":"#",
             "sortStr":"C",
             "level":1,
@@ -11,6 +13,9 @@
                 {
                     "menuName":"JSON格式化",
                     "menuCode":"JSON",
+                    
+            "parentCode" : "TOOLS", 
+            "ancestorCode" : "TOOLS", 
                     "menuUrl":"/json",
                     "sortStr":"C1",
                     "level":2
@@ -18,6 +23,9 @@
                 {
                     "menuName":"日期格式化",
                     "menuCode":"DATE",
+                    
+            "parentCode" : "TOOLS", 
+            "ancestorCode" : "TOOLS", 
                     "menuUrl":"/date",
                     "sortStr":"C2",
                     "level":2
@@ -25,6 +33,9 @@
                 {
                     "menuName":"在线字数统计",
                     "menuCode":"WORD",
+                    
+            "parentCode" : "TOOLS", 
+            "ancestorCode" : "TOOLS", 
                     "menuUrl":"/word",
                     "sortStr":"C3",
                     "level":2
@@ -34,9 +45,111 @@
         {
             "menuName":"HOME",
             "menuCode":"HOME",
+            
+            "parentCode" : "HOME", 
+            "ancestorCode" : "HOME", 
             "menuUrl":"/",
             "sortStr":"A",
             "level":1
+        }
+    ]
+}
+
+
+
+{ 
+    "siteSource" : "bootstrap", 
+    "menuList" : [
+        {
+            "menuName" : "仪表盘", 
+            "menuCode" : "Dashboard", 
+            "menuUrl" : "jimas", 
+            "sortStr" : "A", 
+            "icon" : "icon-home", 
+            "level" : "1", 
+            "subMenuList" : [
+                {
+                    "menuName" : "城市列表", 
+                    "menuCode" : "cityList", 
+                    "parentCode" : "Dashboard", 
+                    "ancestorCode" : "Dashboard", 
+                    "menuUrl" : "cityPage", 
+                    "sortStr" : "A1", 
+                    "icon" : "icon-user", 
+                    "level" : "2"
+                }
+            ]
+        }, 
+        {
+            "menuName" : "布局", 
+            "menuCode" : "Layouts", 
+            "sortStr" : "B", 
+            "icon" : "icon-cogs", 
+            "level" : "1", 
+            "subMenuList" : [
+                {
+                    "menuName" : "功能测试", 
+                    "menuCode" : "sub-menu-1", 
+                    "parentCode" : "Layouts", 
+                    "ancestorCode" : "Layouts", 
+                    "menuUrl" : "sub_one", 
+                    "sortStr" : "B1", 
+                    "icon" : "icon-external-link", 
+                    "level" :"2", 
+                    "subMenuList" : [
+                        {
+                            "menuName" : "异步执行", 
+                            "menuCode" : "sub-menu-1-1", 
+                            "parentCode" : "sub-menu-1", 
+                            "ancestorCode" : "Layouts", 
+                            "menuUrl" : "sub_one_one", 
+                            "sortStr" : "B1A", 
+                            "icon" : "icon-edit", 
+                            "level" : "3"
+                        }, 
+                        {
+                            "menuName" : "同步执行", 
+                            "menuCode" : "sub-menu-1-2", 
+                            "parentCode" : "sub-menu-1", 
+                            "ancestorCode" : "Layouts", 
+                            "menuUrl" : "sub_one_two", 
+                            "sortStr" : "B1B", 
+                            "icon" : "icon-pencil", 
+                            "level" : "3"
+                        }, 
+                        {
+                            "menuName" : "模拟异常", 
+                            "menuCode" : "sub-menu-1-3", 
+                            "parentCode" : "sub-menu-1", 
+                            "ancestorCode" : "Layouts", 
+                            "menuUrl" : "sub_one_three", 
+                            "sortStr" : "B1C", 
+                            "icon" : "icon-remove", 
+                            "level" : "3"
+                        }
+                    ]
+                }, 
+                {
+                    "menuName" : "删除所有数据", 
+                    "menuCode" : "sub-menu-2", 
+                    "parentCode" : "Layouts", 
+                    "ancestorCode" : "Layouts", 
+                    "menuUrl" : "sub_two", 
+                    "sortStr" : "B2", 
+                    "icon" : "icon-user", 
+                    "level" : "2"
+                }, 
+                {
+                    "menuName" : "批量更新并更新缓存", 
+                    "menuCode" : "sub-menu-3", 
+                    "parentCode" : "Layouts", 
+                    "ancestorCode" : "Layouts", 
+                    "menuUrl" : "sub_three", 
+                    "sortStr" : "B3", 
+                    "icon" : "icon-bell", 
+                    "level" : "2"
+                }
+            ]
         }
     ]
 }

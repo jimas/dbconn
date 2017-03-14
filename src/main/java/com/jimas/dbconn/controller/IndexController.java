@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jimas.dbconn.interceptor.MenuModel;
+
 @Controller
 public class IndexController extends BaseController {
 
     @RequestMapping({"","/"})
+    @MenuModel
     public String index(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         
         return "index";

@@ -1,11 +1,13 @@
 package com.jimas.dbconn.service.mongo;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.google.gson.reflect.TypeToken;
 import com.jimas.dbconn.http.RestService;
 import com.jimas.dbconn.pojo.rest.BaseKeyReq;
 import com.jimas.dbconn.pojo.rest.Menu;
@@ -23,7 +25,7 @@ public class MenuRsServiceTest extends BaseTest {
     @Test
     public void testSaveMenu() {
         
-        MenuPojo rs=new MenuPojo();
+        MenuPojo<Menu> rs=new MenuPojo<Menu>();
         rs.setSiteSource("dbconn");
         List<Menu> menuList=new ArrayList<Menu>();
         
@@ -31,12 +33,16 @@ public class MenuRsServiceTest extends BaseTest {
         home_menu.setLevel(1);
         home_menu.setMenuCode("HOME");
         home_menu.setMenuName("HOME");
+        home_menu.setAncestorCode("HOME");
+        home_menu.setParentCode("HOME");
         home_menu.setMenuUrl("/");
         home_menu.setSortStr("A");
         
         Menu tools_menu = new Menu();
         tools_menu.setLevel(1);
         tools_menu.setMenuCode("TOOLS");
+        tools_menu.setAncestorCode("TOOLS");
+        tools_menu.setParentCode("TOOLS");
         tools_menu.setMenuName("工具栏");
         tools_menu.setMenuUrl("#");
         tools_menu.setSortStr("C");
@@ -46,6 +52,8 @@ public class MenuRsServiceTest extends BaseTest {
         Menu json_menu = new Menu();
         json_menu.setLevel(2);
         json_menu.setMenuCode("JSON");
+        json_menu.setAncestorCode("TOOLS");
+        json_menu.setParentCode("TOOLS");
         json_menu.setMenuName("JSON格式化");
         json_menu.setMenuUrl("/json");
         json_menu.setSortStr("C1");
@@ -54,6 +62,8 @@ public class MenuRsServiceTest extends BaseTest {
         Menu date_menu = new Menu();
         date_menu.setLevel(2);
         date_menu.setMenuCode("DATE");
+        date_menu.setAncestorCode("TOOLS");
+        date_menu.setParentCode("TOOLS");
         date_menu.setMenuName("日期格式化");
         date_menu.setMenuUrl("/date");
         date_menu.setSortStr("C2");
@@ -62,6 +72,8 @@ public class MenuRsServiceTest extends BaseTest {
         Menu word_menu = new Menu();
         word_menu.setLevel(2);
         word_menu.setMenuCode("WORD");
+        word_menu.setAncestorCode("TOOLS");
+        word_menu.setParentCode("TOOLS");
         word_menu.setMenuName("在线字数统计");
         word_menu.setMenuUrl("/word");
         word_menu.setSortStr("C3");
@@ -76,15 +88,18 @@ public class MenuRsServiceTest extends BaseTest {
         System.out.println(postHttp);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testGetMenuRsBySiteSource() {
         String siteSource="dbconn";
         BaseKeyReq<String> baseKeyReq = new BaseKeyReq<String>();
         baseKeyReq.setSiteSource(siteSource);
         String json = restService.postHttp(UrlEnum.MENU_QUERY, baseKeyReq,siteSource);
-        ResultVo parseJson = (ResultVo) GsonUtil.parseJson(json, ResultVo.class);
-        if(parseJson.getStatus()==200){
-            System.out.println(parseJson.getResult());
+        Type type = new TypeToken<ResultVo<MenuPojo<Menu>>>(){}.getType();
+        ResultVo<MenuPojo<Menu>> resultVo = (ResultVo<MenuPojo<Menu>>) GsonUtil.parseJson(json, type);
+        if(resultVo.getStatus()==200){
+            MenuPojo<Menu> result = (MenuPojo<Menu>) resultVo.getResult();
+            System.out.println(result);
         }
     }
 

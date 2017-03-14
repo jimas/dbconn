@@ -18,7 +18,7 @@
 <!-- head -->
 <div th:include="common/json/jsoncss :: jsoncss" th:remove="tag" />
 </head>
-<body>
+<body th:with="ancestorCode='TOOLS',parentCode='TOOLS',code='JSON'">
 	<!-- header -->
 	<div th:include="common/header :: header" th:remove="tag" />
 	<!-- nav -->

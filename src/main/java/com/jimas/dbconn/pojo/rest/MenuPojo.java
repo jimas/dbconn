@@ -7,13 +7,13 @@ import java.util.List;
  * @author weqinjia.liu
  * @Date 2017年3月10日
  */
-public class MenuPojo implements Serializable{
+public class MenuPojo<T> implements Serializable{
 
     private static final long serialVersionUID = -8132722404639210032L;
     
     private String siteSource;//来源系统
     
-    private List<?> menuList;//菜单列表
+    private List<T> menuList;//菜单列表
 
 
     public String getSiteSource() {
@@ -24,11 +24,11 @@ public class MenuPojo implements Serializable{
         this.siteSource = siteSource;
     }
 
-    public List<?> getMenuList() {
+    public List<T> getMenuList() {
         return menuList;
     }
 
-    public void setMenuList(List<?> menuList) {
+    public void setMenuList(List<T> menuList) {
         this.menuList = menuList;
     }
 

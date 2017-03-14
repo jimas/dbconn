@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.jimas.dbconn.api.MenuApi;
+import com.jimas.dbconn.pojo.rest.Menu;
 import com.jimas.dbconn.pojo.rest.MenuPojo;
 import com.jimas.dbconn.sourceconfig.ParamsConfig;
 
@@ -51,8 +52,8 @@ public class MvcResultInterceptor extends HandlerInterceptorAdapter {
                 modelAndView=new ModelAndView();
             }
             if(menuModel!=null&&menuModel.value()){
-                MenuPojo menuPojo = menuApi.queryMenuPojoBySiteSource(paramsConfig.getSiteSource());
-                modelAndView.addObject("menuPojo", menuPojo);
+                MenuPojo<Menu> menuPojo = menuApi.queryMenuPojoBySiteSource(paramsConfig.getSiteSource());
+                modelAndView.addObject("menuList", menuPojo.getMenuList());
             }
         }
     }

@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.jimas.dbconn.pojo.rest.ResultVo;
 
 public class GsonUtil {
     public static String toJsonString(Object obj) {
@@ -19,5 +20,11 @@ public class GsonUtil {
     public static List<?> parseJsonList(String json, Type type) {
         Gson gson = new Gson();
         return ((List<?>) gson.fromJson(json, type));
+    }
+
+    public static ResultVo<?> parseJson(String json, Type type) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, type);
+
     }
 }

@@ -13,7 +13,7 @@ public class LogPojo implements Serializable{
     private String remoteAddr;
     private String classMethod;
     private String args;
-    private Map parameters;
+    private Map<String,String> parameters;
     
     private Date operateDate;
     
@@ -57,10 +57,10 @@ public class LogPojo implements Serializable{
     public void setArgs(String args) {
         this.args = args;
     }
-    public Map getParameters() {
+    public Map<String,String> getParameters() {
         return parameters;
     }
-    public void setParameters(Map parameters) {
+    public void setParameters(Map<String,String> parameters) {
         this.parameters = parameters;
     }
     public String getSiteSource() {

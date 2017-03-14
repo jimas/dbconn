@@ -5,15 +5,15 @@ import java.io.Serializable;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-public class ResultVo implements Serializable {
+public class ResultVo<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int status; //返回结果[200成功]
 	private String message; //失败时，返回错误消息
-	private Object result; //返回结果集
+	private T result; //返回结果集
 	public ResultVo(){
 		this.status = 200; //默认成功
 	}
-	public ResultVo(int status,String message,Object result){
+	public ResultVo(int status,String message,T result){
 		this.status = status;
 		this.message = message;
 		this.result = result;
@@ -33,7 +33,7 @@ public class ResultVo implements Serializable {
 	public Object getResult() {
 		return result;
 	}
-	public void setResult(Object result) {
+	public void setResult(T result) {
 		this.result = result;
 	}
     @Override

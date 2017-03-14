@@ -1,6 +1,7 @@
 package com.jimas.dbconn.service;
 
 import org.apache.cxf.common.util.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +14,20 @@ import com.jimas.dbconn.util.GsonUtil;
 
 @Service
 public class LogService implements LogApi {
+    private static final Logger logger=Logger.getLogger(LogService.class);
     @Autowired
     private RestService restService;
+    @SuppressWarnings("unchecked")
     @Override
-    public ResultVo insertLog(LogPojo logPojo) {
-        
-        String json=restService.postHttp(UrlEnum.LOG_INSERT, logPojo, logPojo.getSiteSource());
-        
-        if(!StringUtils.isEmpty(json)){
-            return  (ResultVo) GsonUtil.parseJson(json, ResultVo.class);
+    public ResultVo<LogPojo> insertLog(LogPojo logPojo) {
+        try {
+            String json=restService.postHttp(UrlEnum.LOG_INSERT, logPojo, logPojo.getSiteSource());
+            
+            if(!StringUtils.isEmpty(json)){
+                return  (ResultVo<LogPojo>) GsonUtil.parseJson(json, ResultVo.class);
+            }
+        } catch (Exception e) {
+            logger.error("LogService.insertLog error", e);
         }
         return null;
     }

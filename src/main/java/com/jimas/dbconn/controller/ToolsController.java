@@ -9,23 +9,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jimas.dbconn.interceptor.MenuModel;
 import com.jimas.dbconn.util.DateUtil;
 
 @Controller
 public class ToolsController extends BaseController {
 
     @RequestMapping("word")
-    public String wordCount(HttpServletRequest request,HttpServletResponse response,ModelMap map){
+    @MenuModel
+    public String word(HttpServletRequest request,HttpServletResponse response,ModelMap map){
         
         return "pages/word";
     }
+    @MenuModel
     @RequestMapping("json")
-    public String jsonFormat(HttpServletRequest request,HttpServletResponse response,ModelMap map){
+    public String json(HttpServletRequest request,HttpServletResponse response,ModelMap map){
         
         return "pages/json";
     }
+    @MenuModel
     @RequestMapping("/date")
-    public String toolsIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+    public String date(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         Date date = new Date();
         String now = DateUtil.format(date,DateUtil.DATE_TIME_FORMAT);
         map.put("times_tamp",date.getTime()/1000);// 秒级别

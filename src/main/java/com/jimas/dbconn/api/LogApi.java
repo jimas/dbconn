@@ -5,5 +5,5 @@ import com.jimas.dbconn.pojo.rest.ResultVo;
 
 public interface LogApi {
     
-    public ResultVo insertLog(LogPojo logPojo);
+    public ResultVo<LogPojo> insertLog(LogPojo logPojo);
 }
