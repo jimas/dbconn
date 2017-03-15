@@ -6,12 +6,12 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.jimas.common.util.GsonUtil;
 import com.jimas.dbconn.api.UserInfoApi;
 import com.jimas.dbconn.cache.redis.api.BoundRedisApi;
 import com.jimas.dbconn.pojo.User;
 import com.jimas.dbconn.repository.entity.UserInfo;
 import com.jimas.dbconn.service.BaseTest;
-import com.jimas.dbconn.util.GsonUtil;
 
 public class BoundRedisServiceTest extends BaseTest {
 

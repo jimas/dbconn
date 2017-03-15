@@ -8,14 +8,14 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.reflect.TypeToken;
+import com.jimas.common.ResultVo;
+import com.jimas.common.util.GsonUtil;
 import com.jimas.dbconn.http.RestService;
 import com.jimas.dbconn.pojo.rest.BaseKeyReq;
 import com.jimas.dbconn.pojo.rest.Menu;
 import com.jimas.dbconn.pojo.rest.MenuPojo;
-import com.jimas.dbconn.pojo.rest.ResultVo;
 import com.jimas.dbconn.service.BaseTest;
 import com.jimas.dbconn.urlenum.UrlEnum;
-import com.jimas.dbconn.util.GsonUtil;
 
 public class MenuRsServiceTest extends BaseTest {
 

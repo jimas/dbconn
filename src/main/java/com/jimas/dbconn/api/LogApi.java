@@ -1,7 +1,7 @@
 package com.jimas.dbconn.api;
 
+import com.jimas.common.ResultVo;
 import com.jimas.dbconn.pojo.rest.LogPojo;
-import com.jimas.dbconn.pojo.rest.ResultVo;
 
 public interface LogApi {
     

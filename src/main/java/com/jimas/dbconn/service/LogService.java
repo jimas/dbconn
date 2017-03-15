@@ -5,12 +5,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jimas.common.ResultVo;
+import com.jimas.common.util.GsonUtil;
 import com.jimas.dbconn.api.LogApi;
 import com.jimas.dbconn.http.RestService;
 import com.jimas.dbconn.pojo.rest.LogPojo;
-import com.jimas.dbconn.pojo.rest.ResultVo;
 import com.jimas.dbconn.urlenum.UrlEnum;
-import com.jimas.dbconn.util.GsonUtil;
 
 @Service
 public class LogService implements LogApi {

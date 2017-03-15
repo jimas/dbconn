@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jimas.common.util.DateUtil;
 import com.jimas.dbconn.interceptor.MenuModel;
-import com.jimas.dbconn.util.DateUtil;
 
 @Controller
 public class ToolsController extends BaseController {

@@ -4,6 +4,8 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import com.jimas.common.util.DateUtil;
+
 public class DateUtilTest {
 
     @Test

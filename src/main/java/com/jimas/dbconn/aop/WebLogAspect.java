@@ -22,11 +22,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.jimas.common.util.IpAddressUtil;
 import com.jimas.dbconn.api.LogApi;
 import com.jimas.dbconn.pojo.rest.LogPojo;
-import com.jimas.dbconn.pojo.rest.ResultVo;
 import com.jimas.dbconn.sourceconfig.ParamsConfig;
-import com.jimas.dbconn.util.IpAddressUtil;
 
 /**
  * 实现Web层的日志切面 在切入点前的操作，按order的值由小到大执行 在切入点后的操作，按order的值由大到小执行 在实际中order值可以设置为负值，确保是第一个进行执行的
