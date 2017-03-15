@@ -17,27 +17,28 @@
 						th:class="(${menu.menuCode} eq ${ancestorCode}) ? (${not #lists.isEmpty(menu.subMenuList)} ? 'dropdown active' :'active') :(${not #lists.isEmpty(menu.subMenuList)} ? 'dropdown' :'') "
 						th:each="menu:${menuList}">
 						<!--  有子菜单 -->
-				   <a th:inline="text" href="#"
-						th:if="${not #lists.isEmpty(menu.subMenuList)}"
-						th:href="${menu.menuUrl}" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">
-						[[${menu.menuName}]] <span class="caret"></span>
-					</a>
-
-					<ul class="dropdown-menu"
-						th:if="${not #lists.isEmpty(menu.subMenuList)}">
-						<div th:each="subMenu:${menu.subMenuList}" th:remove="tag">
-							<li><a href="#" th:href="${subMenu.menuUrl}"
-								th:text="${subMenu.menuName}"></a></li>
-							<li role="separator" class="divider"></li>
-						</div>
-					</ul> 
-					<!--  无子菜单 -->
-				   <a th:inline="text" href="#" th:href="${menu.menuUrl}"
-						th:if="${ #lists.isEmpty(menu.subMenuList)}">
-							[[${menu.menuName}]]<span class="sr-only">(current)</span>
-					</a>
+						   <a th:inline="text" href="#"
+								th:if="${not #lists.isEmpty(menu.subMenuList)}"
+								th:href="${menu.menuUrl}" class="dropdown-toggle"
+								data-toggle="dropdown" role="button" aria-haspopup="true"
+								aria-expanded="false">
+								[[${menu.menuName}]] <span class="caret"></span>
+							</a>
+		
+							<ul class="dropdown-menu"
+								th:if="${not #lists.isEmpty(menu.subMenuList)}">
+								<div th:each="subMenu:${menu.subMenuList}" th:remove="tag">
+									<li th:class="(${subMenu.menuCode eq code}) ? 'active':'' " ><a href="#" th:href="${subMenu.menuUrl}"
+										th:text="${subMenu.menuName}"></a></li>
+									<li role="separator" class="divider"></li>
+								</div>
+							</ul> 
+						<!--  有子菜单 -->
+							<!--  无子菜单 -->
+						   <a th:inline="text" href="#" th:href="${menu.menuUrl}"
+								th:if="${ #lists.isEmpty(menu.subMenuList)}">
+									[[${menu.menuName}]]<span class="sr-only">(current)</span>
+							</a>
 
 					</li>
 				</ul>
