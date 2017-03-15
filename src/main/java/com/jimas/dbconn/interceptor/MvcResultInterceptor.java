@@ -2,16 +2,13 @@ package com.jimas.dbconn.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import com.jimas.dbconn.api.MenuApi;
 import com.jimas.dbconn.pojo.rest.Menu;
 import com.jimas.dbconn.pojo.rest.MenuPojo;
@@ -25,6 +22,7 @@ import com.jimas.dbconn.sourceconfig.ParamsConfig;
  */
 @Component
 public class MvcResultInterceptor extends HandlerInterceptorAdapter {
+    private static final Logger logger=Logger.getLogger(MvcResultInterceptor.class);
     @Autowired
     private MenuApi menuApi;
     @Autowired
@@ -34,7 +32,7 @@ public class MvcResultInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("-------------------preHandle");
+        logger.info("-------------------preHandle");
         // 验证用户是否登陆 TODO
         return true;
     }
@@ -44,7 +42,7 @@ public class MvcResultInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("-------------------postHandle");
+        logger.info("-------------------postHandle");
         if(handler instanceof HandlerMethod){
             HandlerMethod method =(HandlerMethod) handler;
             MenuModel menuModel = method.getMethodAnnotation(MenuModel.class);
@@ -63,6 +61,6 @@ public class MvcResultInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("-------------------afterCompletion");
+        logger.info("-------------------afterCompletion");
     }
 }

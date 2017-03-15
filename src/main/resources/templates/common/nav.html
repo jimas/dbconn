@@ -3,11 +3,13 @@
 	xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="nav">
 
-	<div class="container" style="margin-top:70px;">
-		<ol class="breadcrumb">
-			<li><a href="#">HOME </a></li>
-
-			<li><a href="#">JSON格式化</a></li>
+	<div class="container">
+		<ol class="breadcrumb" th:if="${menu.menuCode} eq ${ancestorCode}" th:each="menu:${menuList}">
+			<li><a href="#" th:href="${menu.menuUrl}" th:text="${menu.menuName}"> </a></li>
+			<li th:if="${subMenu.menuCode eq code}" th:each="subMenu:${menu.subMenuList}" >
+				<a href="#" th:text="${subMenu.menuName}">JSON格式化</a>
+			</li>
+			<li th:if="${#lists.isEmpty(menu.subMenuList)}" th:text="${menu.menuName}"></li>
 		</ol>
 	</div>
 

@@ -9,13 +9,12 @@
             "menuUrl":"#",
             "sortStr":"C",
             "level":1,
-            "subList":[
+            "subMenuList":[
                 {
                     "menuName":"JSON格式化",
                     "menuCode":"JSON",
-                    
-            "parentCode" : "TOOLS", 
-            "ancestorCode" : "TOOLS", 
+		            "parentCode" : "TOOLS", 
+		            "ancestorCode" : "TOOLS", 
                     "menuUrl":"/json",
                     "sortStr":"C1",
                     "level":2
@@ -23,9 +22,8 @@
                 {
                     "menuName":"日期格式化",
                     "menuCode":"DATE",
-                    
-            "parentCode" : "TOOLS", 
-            "ancestorCode" : "TOOLS", 
+		            "parentCode" : "TOOLS", 
+		            "ancestorCode" : "TOOLS", 
                     "menuUrl":"/date",
                     "sortStr":"C2",
                     "level":2
@@ -33,9 +31,8 @@
                 {
                     "menuName":"在线字数统计",
                     "menuCode":"WORD",
-                    
-            "parentCode" : "TOOLS", 
-            "ancestorCode" : "TOOLS", 
+		            "parentCode" : "TOOLS", 
+		            "ancestorCode" : "TOOLS", 
                     "menuUrl":"/word",
                     "sortStr":"C3",
                     "level":2
@@ -45,7 +42,6 @@
         {
             "menuName":"HOME",
             "menuCode":"HOME",
-            
             "parentCode" : "HOME", 
             "ancestorCode" : "HOME", 
             "menuUrl":"/",
