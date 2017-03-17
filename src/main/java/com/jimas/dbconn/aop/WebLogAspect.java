@@ -5,9 +5,7 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -21,7 +19,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import com.jimas.common.util.IpAddressUtil;
 import com.jimas.dbconn.api.LogApi;
 import com.jimas.dbconn.pojo.rest.LogPojo;
@@ -94,7 +91,6 @@ public class WebLogAspect {
         logPojo.setSiteSource(paramsConfig.getSiteSource());
 
         webLogApi.insertLog(logPojo);
-        logger.info("request url-->" + request.getRequestURL().toString());
 
     }
 

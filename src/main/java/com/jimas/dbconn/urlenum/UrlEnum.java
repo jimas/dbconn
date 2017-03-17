@@ -9,7 +9,11 @@ public enum UrlEnum {
     
     MENU_QUERY("menu/queryMenu"),
     MENU_SAVE("menu/saveMenu"),
-    LOG_INSERT("webLog/insertLog");
+    LOG_INSERT("webLog/insertLog"),
+    LOG_SITE_COUNT("webLog/countAccessBysiteSource"),
+    LOG_SITE_IP_COUNT("webLog/ipCountAccessBysiteSource"),
+    LOG_SITE_URL_IP_COUNT("webLog/ipCountAccessByUrlsiteSource"),
+    LOG_SITE_URL_COUNT("webLog/countAccessByUrlsiteSource");
     
     private UrlEnum(String url){
         this.url=url;

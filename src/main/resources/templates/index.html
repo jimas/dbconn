@@ -4,17 +4,15 @@
 <head>
 <!--网页编码，要使用的外部文件，自动适应屏幕-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/> -->
 <meta http-equiv="viewport" content="width=device-width, 
                                      initial-scale=1.0, 
                                      maximum-scale=5.0, 
                                      user-scalable=no"/>
-<!-- <meta http-equiv="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" /> -->
 <meta name="description" content="json在线解析"/>
 <meta name="keywords" content="json,xml,json在线解析,json转xml,xml转json,json、xml互转"/>
 <meta name="author" content="jimas.liu"/>
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-<title>json format</title>
+<title>ECharts</title>
 <!-- head -->
 <div th:include="common/json/jsoncss :: jsoncss" th:remove="tag" />
 </head>
@@ -25,12 +23,14 @@
 	<div th:include="common/nav :: nav" th:remove="tag" />
 
 	<div class="container">
-		 
+		  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    		<div id="main" style="height:400px"></div>
+    		
 	</div>
 	<!-- foot -->
 	<div th:include="common/foot :: foot" th:remove="tag" />
 	<!-- core js -->
-	<div th:include="common/corejs :: corejs" th:remove="tag" />
+	<div th:include="common/echarts/echartsjs :: echartsjs" th:remove="tag" />
 
 </body>
 </html>

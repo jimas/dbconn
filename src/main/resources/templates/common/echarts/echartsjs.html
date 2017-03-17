@@ -1,0 +1,86 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="echartsjs">
+
+	<!-- core js -->
+	<div th:include="common/corejs :: corejs" th:remove="tag" />
+	<script type="text/javascript" src="/echarts/echarts.js" />
+	<!-- 内联js: -->
+	<script th:inline="javascript">
+		// 路径配置
+		require.config({
+			paths : {
+				echarts: '/echarts'
+			}
+		});
+		
+		// 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+                var siteSource1=[[${logStatRsList.get(0).siteSource}]];
+    	    	var accessCount1=[[${logStatRsList.get(0).accessCount}]];
+    	    	var siteSource2=[[${logStatRsList.get(1).siteSource}]];
+    	    	var accessCount2=[[${logStatRsList.get(1).accessCount}]];
+                var option = {
+                	    title : {
+                	        text: '系统总访问量',
+                	        subtext: '数据来自日志统计'
+                	    },
+                	    tooltip : {
+                	        trigger: 'axis'
+                	    },
+                	    legend: {
+                	        data:[siteSource1, siteSource2]
+                	    },
+                	    toolbox: {
+                	        show : true,
+                	        feature : {
+                	            mark : {show: true},
+                	            dataView : {show: true, readOnly: false},
+                	            magicType: {show: true, type: ['line', 'bar']},
+                	            restore : {show: true},
+                	            saveAsImage : {show: true}
+                	        }
+                	    },
+                	    calculable : true,
+                	    xAxis : [
+                	        {
+                	            type : 'value',
+                	            boundaryGap : [0, 0.01]
+                	        }
+                	    ],
+                	    yAxis : [
+                	        {
+                	            type : 'category',
+                	            data : ['访问量(人次)']
+                	        }
+                	    ],
+                	    series : [
+                	        {
+                	            name:siteSource1,
+                	            type:'bar',
+                	            data:[accessCount1]
+                	        },
+                	        {
+                	            name:siteSource2,
+                	            type:'bar',
+                	            data:[accessCount2]
+                	        }
+                	    ]
+                	};
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+            }
+        );
+	</script>
+
+</div>
+</html>
