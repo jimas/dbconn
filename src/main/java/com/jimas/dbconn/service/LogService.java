@@ -1,5 +1,6 @@
 package com.jimas.dbconn.service;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import org.apache.cxf.common.util.StringUtils;
@@ -7,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.reflect.TypeToken;
 import com.jimas.common.ResultVo;
 import com.jimas.common.util.GsonUtil;
 import com.jimas.dbconn.api.LogApi;
@@ -45,9 +47,9 @@ public class LogService implements LogApi {
     public ResultVo<List<LogStatisticsRs>> logSiteCount(LogStatisticsRq logStatisticsRq) {
         try {
             String json=restService.postHttp(UrlEnum.LOG_SITE_COUNT, logStatisticsRq, logStatisticsRq.getSiteSource());
-            
+            Type type = new TypeToken<ResultVo<List<LogStatisticsRs>>>(){}.getType();
             if(!StringUtils.isEmpty(json)){
-                return  (ResultVo<List<LogStatisticsRs>>) GsonUtil.parseJson(json, ResultVo.class);
+                return  (ResultVo<List<LogStatisticsRs>>) GsonUtil.parseJson(json, type);
             }
         } catch (Exception e) {
             logger.error("LogService.logSiteCount error", e);

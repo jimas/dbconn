@@ -1,0 +1,104 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-3.dtd">
+<html lang="zh-CN" class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--网页编码，要使用的外部文件，自动适应屏幕-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="viewport" content="width=device-width, 
+                                     initial-scale=1.0, 
+                                     maximum-scale=5.0, 
+                                     user-scalable=no"/>
+<meta name="description" content="json在线解析"/>
+<meta name="keywords" content="json,xml,json在线解析,json转xml,xml转json,json、xml互转"/>
+<meta name="author" content="jimas.liu"/>
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>ECharts</title>
+<!-- head -->
+<div th:include="common/json/jsoncss :: jsoncss" th:remove="tag" />
+</head>
+<body th:with="ancestorCode='TOOLS',parentCode='TOOLS',code='LOG'">
+	<!-- header -->
+	<div th:include="common/header :: header" th:remove="tag" />
+	<!-- nav -->
+	<div th:include="common/nav :: nav" th:remove="tag" />
+
+	<div class="container">
+		  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    		<div id="main" style="height:600px"></div>
+    		
+	</div>
+	<!-- foot -->
+	<div th:include="common/foot :: foot" th:remove="tag" />
+	<!-- core js -->
+	<div th:include="common/echarts/echartsjs :: echartsjs" th:remove="tag" />
+
+
+<!-- 内联js: -->
+<script th:inline="javascript">
+//使用
+require(
+    [
+        'echarts',
+        'echarts/chart/bar',// 使用柱状图就加载bar模块，按需加载
+        'echarts/chart/line'
+    ],
+    function (ec) {
+    	// 基于准备好的dom，初始化echarts图表
+        var myChart = ec.init(document.getElementById('main')); 
+    	var eChartPojo=[[${eChartPojo}]];
+        var option = {
+        	    title : {
+        	        text: '最近5天访问量',
+        	        subtext: '数据来自日志统计'
+        	    },
+        	    tooltip : {
+        	        trigger: 'axis'
+        	    },
+        	    legend: {
+        	        data:eChartPojo.legends
+        	    },
+        	    toolbox: {
+        	        show : true,
+        	        feature : {
+        	            mark : {show: true},
+        	            dataView : {show: true, readOnly: false},
+        	            magicType: {show: true, type: ['line', 'bar']},
+        	            restore : {show: true},
+        	            saveAsImage : {show: true}
+        	        }
+        	    },
+        	    calculable : true,
+        	    xAxis : [
+        	        {
+        	        	type : 'value',
+        	            boundaryGap : [0, 0.01]
+        	        }
+        	    ],
+        	    yAxis : [
+        	        {
+        	        	type : 'category',
+        	            data : eChartPojo.axisCategory
+        	        }
+        	    ],
+        	    series : [
+        	        {
+        	            name:eChartPojo.seriesDatas[0].legend,
+        	            type:'bar',
+        	            data:eChartPojo.seriesDatas[0].series
+        	        },
+        	        {
+        	            name:eChartPojo.seriesDatas[1].legend,
+        	            type:'bar',
+        	            data:eChartPojo.seriesDatas[1].series
+        	        }
+        	    ]
+        	};
+
+        // 为echarts对象加载数据 
+        myChart.setOption(option); 
+    }
+);
+
+</script>
+</body>
+</html>
