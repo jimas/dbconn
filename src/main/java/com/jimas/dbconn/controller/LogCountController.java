@@ -45,16 +45,17 @@ public class LogCountController extends BaseController {
     @MenuModel
     public String logDayCount(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         LogStatisticsRq logStatisticsRq = new LogStatisticsRq();
+        String[] legends = {"bootstrap" ,"dbconn"};
         int days = 5;
         logStatisticsRq.setDays(days);
         Date yesterday = DateUtils.addDays(new Date(), -1);
         logStatisticsRq.setStartDate(DateUtils.addDays(yesterday, -days));
-        logStatisticsRq.setSiteSource("dbconn");
-        ResultVo<List<LogStatisticsRs>> dbconnRs = logApi.logSiteCount(logStatisticsRq);
-        logStatisticsRq.setSiteSource("bootstrap");
-        ResultVo<List<LogStatisticsRs>> bootstrapRs = logApi.logSiteCount(logStatisticsRq);
-        List<LogStatisticsRs> result = dbconnRs.getResult();
-        List<LogStatisticsRs> result2 = bootstrapRs.getResult();
+        logStatisticsRq.setSiteSource(legends[0]);
+        ResultVo<List<LogStatisticsRs>> bootstrap = logApi.logSiteCount(logStatisticsRq);
+        logStatisticsRq.setSiteSource(legends[1]);
+        ResultVo<List<LogStatisticsRs>> dbconn = logApi.logSiteCount(logStatisticsRq);
+        List<LogStatisticsRs> result = bootstrap.getResult();
+        List<LogStatisticsRs> result2 = dbconn.getResult();
 
         Set<String> dayList = DateUtil.getDayList(DateUtils.addDays(logStatisticsRq.getStartDate(), 1), yesterday);
         String[] axisCategory = new String[dayList.size()];
@@ -63,7 +64,6 @@ public class LogCountController extends BaseController {
         for (String string : dayList) {
             axisCategory[i++] = string;
         }
-        String[] legends = { "dbconn", "bootstrap" };
         eChartPojo.setAxisCategory(axisCategory);
         eChartPojo.setLegends(legends);
         List<SeriesData> seriesDatas = new ArrayList<SeriesData>();

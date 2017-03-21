@@ -46,6 +46,7 @@ require(
     	// 基于准备好的dom，初始化echarts图表
         var myChart = ec.init(document.getElementById('main')); 
     	var eChartPojo=[[${eChartPojo}]];
+    	var length=eChartPojo.axisCategory.push('访问量(人次)');//push 返回 数组长度
         var option = {
         	    title : {
         	        text: '最近5天访问量',

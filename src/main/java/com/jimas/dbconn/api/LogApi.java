@@ -16,6 +16,12 @@ public interface LogApi {
     
     public ResultVo<LogPojo> insertLog(LogPojo logPojo);
     /**
+     * 系统每日访问量统计
+     * @param logStatisticsRq
+     * @return
+     */
+    public ResultVo<List<LogStatisticsRs>> countAccessByDay(LogStatisticsRq logStatisticsRq);
+    /**
      * 系统访问量统计
      * @param logStatisticsRq
      * @return

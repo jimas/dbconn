@@ -50,5 +50,10 @@ public class LogServiceTest extends BaseTest {
         ResultVo<List<LogUrlStatisticsRs>> rs = LogService.logSiteUrlCount(logStatisticsRq);
         System.out.println(rs);
     }
-
+    @Test
+    public void testCountAccessByDay() {
+        LogStatisticsRq logStatisticsRq=new LogStatisticsRq();
+        ResultVo<List<LogStatisticsRs>> rs = LogService.countAccessByDay(logStatisticsRq);
+        System.out.println(rs);
+    }
 }

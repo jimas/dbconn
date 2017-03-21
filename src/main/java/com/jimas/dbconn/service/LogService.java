@@ -98,5 +98,19 @@ public class LogService implements LogApi {
         }
         return new ResultVo<List<LogUrlStatisticsRs>>(400," logSiteUrlIpCount error ",null);
     }
+    @SuppressWarnings("unchecked")
+    @Override
+    public ResultVo<List<LogStatisticsRs>> countAccessByDay(LogStatisticsRq logStatisticsRq) {
+        try {
+            String json=restService.postHttp(UrlEnum.LOG_DAY_COUNT, logStatisticsRq, logStatisticsRq.getSiteSource());
+            Type type = new TypeToken<ResultVo<List<LogStatisticsRs>>>(){}.getType();
+            if(!StringUtils.isEmpty(json)){
+                return  (ResultVo<List<LogStatisticsRs>>) GsonUtil.parseJson(json, type);
+            }
+        } catch (Exception e) {
+            logger.error("LogService.logSiteCount error", e);
+        }
+        return new ResultVo<List<LogStatisticsRs>>(400," logSiteCount error ",null);
+    }
 
 }

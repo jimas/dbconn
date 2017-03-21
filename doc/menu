@@ -36,6 +36,15 @@
                     "menuUrl":"/word",
                     "sortStr":"C3",
                     "level":2
+                },
+                {
+                    "menuName":"日志统计",
+                    "menuCode":"LOG",
+		            "parentCode" : "TOOLS", 
+		            "ancestorCode" : "TOOLS", 
+                    "menuUrl":"/log/logDay",
+                    "sortStr":"C4",
+                    "level":2
                 }
             ]
         },

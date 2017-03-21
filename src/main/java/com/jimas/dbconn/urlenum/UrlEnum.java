@@ -13,6 +13,7 @@ public enum UrlEnum {
     LOG_SITE_COUNT("webLog/countAccessBysiteSource"),
     LOG_SITE_IP_COUNT("webLog/ipCountAccessBysiteSource"),
     LOG_SITE_URL_IP_COUNT("webLog/ipCountAccessByUrlsiteSource"),
+    LOG_DAY_COUNT("webLog/countAccessByDay"),
     LOG_SITE_URL_COUNT("webLog/countAccessByUrlsiteSource");
     
     private UrlEnum(String url){

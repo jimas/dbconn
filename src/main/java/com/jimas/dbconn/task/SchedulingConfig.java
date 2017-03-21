@@ -18,7 +18,7 @@ public class SchedulingConfig {
     /**
      * 同步测试
      */
-    @Scheduled(cron = "0 0/2 * * * ?") // 每2分钟执行一次
+    @Scheduled(cron = "0 0 4 * * ?") // 每4小时执行一次
     public void schedulerTest() {
         logger.info("SchedulingConfig.schedulerTest start");
         try {
