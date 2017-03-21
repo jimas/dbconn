@@ -3,14 +3,16 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <!--网页编码，要使用的外部文件，自动适应屏幕-->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta http-equiv="viewport" content="width=device-width, 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="viewport"
+	content="width=device-width, 
                                      initial-scale=1.0, 
                                      maximum-scale=5.0, 
-                                     user-scalable=no"/>
-<meta name="description" content="json在线解析"/>
-<meta name="keywords" content="json,xml,json在线解析,json转xml,xml转json,json、xml互转"/>
-<meta name="author" content="jimas.liu"/>
+                                     user-scalable=no" />
+<meta name="description" content="json在线解析" />
+<meta name="keywords"
+	content="json,xml,json在线解析,json转xml,xml转json,json、xml互转" />
+<meta name="author" content="jimas.liu" />
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>ECharts</title>
 <!-- head -->
@@ -23,9 +25,9 @@
 	<div th:include="common/nav :: nav" th:remove="tag" />
 
 	<div class="container">
-		  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    		<div id="main" style="height:600px"></div>
-    		
+		<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<div id="main" style="height: 600px"></div>
+
 	</div>
 	<!-- foot -->
 	<div th:include="common/foot :: foot" th:remove="tag" />
@@ -33,8 +35,8 @@
 	<div th:include="common/echarts/echartsjs :: echartsjs" th:remove="tag" />
 
 
-<!-- 内联js: -->
-<script th:inline="javascript">
+	<!-- 内联js: -->
+	<script th:inline="javascript">
 //使用
 require(
     [
@@ -48,6 +50,8 @@ require(
     	var eChartPojo=[[${eChartPojo}]];
     	var days=eChartPojo.axisCategory.length;
     	var length=eChartPojo.axisCategory.push('访问量(人次)');//push 返回 数组长度
+    	
+    	
         var option = {
         	    title : {
         	        text: '最近'+days+'天访问量',
@@ -95,7 +99,24 @@ require(
         	        }
         	    ]
         	};
-
+        window.setInterval(showalert, 3000); 
+    	function showalert() 
+    	{ // 为echarts对象动态加载数据 
+    		myChart.setOption({
+    			series: [
+    			{
+        	            name:eChartPojo.seriesDatas[0].legend,
+        	            type:'bar',
+        	            data:eChartPojo.seriesDatas[0].series
+        	        },
+        	        {
+        	            name:eChartPojo.seriesDatas[1].legend,
+        	            type:'bar',
+        	            data:eChartPojo.seriesDatas[1].series
+        	        }
+    			]
+    			});
+    	}; 
         // 为echarts对象加载数据 
         myChart.setOption(option); 
     }

@@ -48,16 +48,23 @@ public class LogCountController extends BaseController {
         String[] legends = {"bootstrap" ,"dbconn"};
         int days = 5;
         logStatisticsRq.setDays(days);
-        Date yesterday = DateUtils.addDays(new Date(), -1);
-        logStatisticsRq.setStartDate(DateUtils.addDays(yesterday, -days));
+        Date today=new Date();
+        logStatisticsRq.setStartDate(DateUtils.addDays(today, -days));
         logStatisticsRq.setSiteSource(legends[0]);
-        ResultVo<List<LogStatisticsRs>> bootstrap = logApi.logSiteCount(logStatisticsRq);
+        ResultVo<List<LogStatisticsRs>> bootstrap = logApi.logSiteCount(logStatisticsRq);// bootstrap  过去5天访问量
         logStatisticsRq.setSiteSource(legends[1]);
-        ResultVo<List<LogStatisticsRs>> dbconn = logApi.logSiteCount(logStatisticsRq);
+        ResultVo<List<LogStatisticsRs>> dbconn = logApi.logSiteCount(logStatisticsRq);// dbconn 过去5天访问量
         List<LogStatisticsRs> result = bootstrap.getResult();
         List<LogStatisticsRs> result2 = dbconn.getResult();
-
-        Set<String> dayList = DateUtil.getDayList(DateUtils.addDays(logStatisticsRq.getStartDate(), 1), yesterday);
+        
+        LogStatisticsRq dayAccess=new LogStatisticsRq();
+        ResultVo<List<LogStatisticsRs>> todayRs = logApi.countAccessByDay(dayAccess);
+        List<LogStatisticsRs> todayLogList = todayRs.getResult();
+        
+        result.add(getDayLog(todayLogList,today,legends[0]));
+        result2.add(getDayLog(todayLogList,today,legends[1]));
+        
+        Set<String> dayList = DateUtil.getDayList(DateUtils.addDays(logStatisticsRq.getStartDate(), 1), today);
         String[] axisCategory = new String[dayList.size()];
         EChartPojo eChartPojo = new EChartPojo();
         int i = 0;
@@ -85,7 +92,40 @@ public class LogCountController extends BaseController {
 
         return "pages/log";
     }
+    
 
+
+    //查询今日动态访问量
+    @RequestMapping("/logActiveDay")
+    @MenuModel
+    public String logOneDayCount(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+        LogStatisticsRq logStatisticsRq = new LogStatisticsRq();
+        Date today=new Date();
+        logStatisticsRq.setStartDate(today);
+        ResultVo<List<LogStatisticsRs>> rs = logApi.countAccessByDay(logStatisticsRq);
+        
+        List<LogStatisticsRs> list = rs.getResult();
+        String[] legends =  new String[list.size()];
+        int ii=0;
+        List<SeriesData> seriesDatas=new ArrayList<SeriesData>();
+        for (LogStatisticsRs logStatisticsRs : list) {
+            legends[ii++]=logStatisticsRs.getSiteSource();
+            SeriesData seriesData = new SeriesData();
+            seriesData.setLegend(logStatisticsRs.getSiteSource());
+            String[] series={logStatisticsRs.getAccessCount()+""};
+            seriesData.setSeries(series);
+            seriesDatas.add(seriesData);
+        }
+        String[] axisCategory = {DateUtil.getDateFormat(today)};
+        EChartPojo eChartPojo = new EChartPojo();
+        eChartPojo.setAxisCategory(axisCategory);
+        eChartPojo.setLegends(legends);
+        eChartPojo.setSeriesDatas(seriesDatas);
+        map.put("eChartPojo", eChartPojo);
+
+        return "pages/activeLog";
+    }
+    
     private String[] convertSeries(List<LogStatisticsRs> result, String[] axisCategory) {
 
         ArrayList<String> seriesList = new ArrayList<String>();
@@ -111,5 +151,14 @@ public class LogCountController extends BaseController {
         }
         return series;
     }
-
+    
+    private LogStatisticsRs getDayLog(List<LogStatisticsRs> todayLogList, Date today, String siteSource) {
+        for (LogStatisticsRs logStatisticsRs : todayLogList) {
+            if(logStatisticsRs.getSiteSource().equals(siteSource)){
+                logStatisticsRs.setOperateDate(today);
+                return logStatisticsRs;
+            }
+        }
+        return null;
+    }
 }
