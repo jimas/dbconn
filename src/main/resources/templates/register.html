@@ -1,0 +1,49 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-3.dtd">
+<html lang="zh-CN" class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--网页编码，要使用的外部文件，自动适应屏幕-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="viewport"
+	content="width=device-width, 
+                                     initial-scale=1.0, 
+                                     maximum-scale=5.0, 
+                                     user-scalable=no" />
+<meta name="description" content="json在线解析" />
+<meta name="keywords"
+	content="json,xml,json在线解析,json转xml,xml转json,json、xml互转" />
+<meta name="author" content="jimas.liu" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>注册页面</title>
+<!-- head -->
+<div th:include="common/login/logincss :: logincss" th:remove="tag" />
+</head>
+<body>
+	<div th:include="common/header :: header" th:remove="tag" />
+
+		<div class="signin">
+			<div class="signin-head">
+				<img src="/image/head_120.png" alt="" class="img-circle"/>
+			</div>
+			<form class="form-signin" role="form">
+				<input type="text" class="form-control" placeholder="用户名" required="required"
+					autofocus="autofocus" /> <input type="password" class="form-control"
+					placeholder="密码" required="required" />
+					
+				<button class="btn btn-lg btn-warning btn-block" type="submit">注册</button>
+			</form>
+		</div>
+
+	<!-- foot -->
+	<div th:include="common/foot :: foot" th:remove="tag" />
+	<!-- core js -->
+	<div th:include="common/login/loginjs :: loginjs" th:remove="tag" />
+
+
+	<!-- 内联js: -->
+	<script th:inline="javascript"> 
+
+
+	</script>
+</body>
+</html>
