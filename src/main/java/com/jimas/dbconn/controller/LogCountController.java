@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jimas.common.ResultVo;
 import com.jimas.common.util.DateUtil;
@@ -99,6 +101,13 @@ public class LogCountController extends BaseController {
     @RequestMapping("/logActiveDay")
     @MenuModel
     public String logOneDayCount(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+
+        return "pages/activeLog";
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/activeCountLog",method = RequestMethod.POST)
+    public EChartPojo activeCountLog(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
         LogStatisticsRq logStatisticsRq = new LogStatisticsRq();
         Date today=new Date();
         logStatisticsRq.setStartDate(today);
@@ -121,9 +130,7 @@ public class LogCountController extends BaseController {
         eChartPojo.setAxisCategory(axisCategory);
         eChartPojo.setLegends(legends);
         eChartPojo.setSeriesDatas(seriesDatas);
-        map.put("eChartPojo", eChartPojo);
-
-        return "pages/activeLog";
+        return eChartPojo;
     }
     
     private String[] convertSeries(List<LogStatisticsRs> result, String[] axisCategory) {
