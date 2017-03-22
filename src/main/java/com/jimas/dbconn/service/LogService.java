@@ -19,9 +19,9 @@ import com.jimas.dbconn.api.response.LogIpCountRs;
 import com.jimas.dbconn.api.response.LogStatisticsRs;
 import com.jimas.dbconn.api.response.LogUrlCountRs;
 import com.jimas.dbconn.api.response.LogUrlStatisticsRs;
+import com.jimas.dbconn.constant.UrlEnum;
 import com.jimas.dbconn.http.RestService;
 import com.jimas.dbconn.pojo.rest.LogPojo;
-import com.jimas.dbconn.urlenum.UrlEnum;
 
 @Service
 public class LogService implements LogApi {

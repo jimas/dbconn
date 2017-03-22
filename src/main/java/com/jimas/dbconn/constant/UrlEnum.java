@@ -1,4 +1,4 @@
-package com.jimas.dbconn.urlenum;
+package com.jimas.dbconn.constant;
 
 /**
  * @Description restful 接口 枚举

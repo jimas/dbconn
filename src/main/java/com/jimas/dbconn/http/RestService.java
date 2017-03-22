@@ -4,9 +4,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
 import com.jimas.common.util.MD5Util;
+import com.jimas.dbconn.constant.UrlEnum;
 import com.jimas.dbconn.sourceconfig.ParamsConfig;
-import com.jimas.dbconn.urlenum.UrlEnum;
 
 @Service
 public class RestService {

@@ -12,20 +12,20 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import com.jimas.dbconn.cache.redis.api.BoundRedisApi;
+import com.jimas.dbconn.constant.Constant;
 
 @Service
 public class BoundRedisService implements BoundRedisApi {
 
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
-    private long defaultTimeout=10*60;//10分钟
     @Override
     public void set(String key, String value,long timeout) {
         redisTemplate.boundValueOps(key).set(value);
         if(timeout>0){
             redisTemplate.expire(key, timeout, TimeUnit.SECONDS);
         }else{
-            redisTemplate.expire(key, defaultTimeout, TimeUnit.SECONDS);
+            redisTemplate.expire(key, Constant.DEFAULTTIMEOUT, TimeUnit.SECONDS);
         }
     }
 
@@ -68,13 +68,13 @@ public class BoundRedisService implements BoundRedisApi {
     @Override
     public void leftPushListCache(String key, String value) {
         redisTemplate.boundListOps(key).leftPush(value);
-        redisTemplate.expire(key, defaultTimeout, TimeUnit.SECONDS);
+        redisTemplate.expire(key, Constant.DEFAULTTIMEOUT, TimeUnit.SECONDS);
     }
 
     @Override
     public void rightPushListCache(String key, String value) {
         redisTemplate.boundListOps(key).rightPush(value);
-        redisTemplate.expire(key, defaultTimeout, TimeUnit.SECONDS);
+        redisTemplate.expire(key, Constant.DEFAULTTIMEOUT, TimeUnit.SECONDS);
     }
 
     @Override

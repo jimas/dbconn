@@ -10,11 +10,11 @@ import com.google.gson.reflect.TypeToken;
 import com.jimas.common.ResultVo;
 import com.jimas.common.util.GsonUtil;
 import com.jimas.dbconn.api.MenuApi;
+import com.jimas.dbconn.constant.UrlEnum;
 import com.jimas.dbconn.http.RestService;
 import com.jimas.dbconn.pojo.rest.BaseKeyReq;
 import com.jimas.dbconn.pojo.rest.Menu;
 import com.jimas.dbconn.pojo.rest.MenuPojo;
-import com.jimas.dbconn.urlenum.UrlEnum;
 @Service("MenuService")
 public class MenuService implements MenuApi {
 
