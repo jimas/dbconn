@@ -1,7 +1,9 @@
 package com.jimas.dbconn.service;
 
+import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,6 +35,8 @@ public class LogServiceTest extends BaseTest {
     @Test
     public void testLogSiteIpCount() {
         LogIpRq logIpRq=new LogIpRq();
+        logIpRq.setSiteSource("bootstrap");
+        logIpRq.setStart(DateUtils.addDays(new Date(), -3));
         ResultVo<List<LogIpCountRs>> rs = LogService.logSiteIpCount(logIpRq);
         System.out.println(rs);
     }

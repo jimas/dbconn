@@ -61,9 +61,9 @@ public class LogService implements LogApi {
     public ResultVo<List<LogIpCountRs>> logSiteIpCount(LogIpRq logIpRq) {
         try {
             String json=restService.postHttp(UrlEnum.LOG_SITE_IP_COUNT, logIpRq, logIpRq.getSiteSource());
-            
+            Type type = new TypeToken<ResultVo<List<LogIpCountRs>>>(){}.getType();
             if(!StringUtils.isEmpty(json)){
-                return  (ResultVo<List<LogIpCountRs>>) GsonUtil.parseJson(json, ResultVo.class);
+                return  (ResultVo<List<LogIpCountRs>>) GsonUtil.parseJson(json, type);
             }
         } catch (Exception e) {
             logger.error("LogService.logSiteIpCount error", e);

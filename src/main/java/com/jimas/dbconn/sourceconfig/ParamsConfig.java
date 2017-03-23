@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ParamsConfig {
+    @Value("${exclude.ip}")
+    private String[] excludeIp;
     @Value("${result.mvcInterceptor.exclude.path}")
     private String[] mvcInterceptorExcludePath;
     @Value("${site.source}")
@@ -25,6 +27,9 @@ public class ParamsConfig {
     }
     public String getRestBaseUrl() {
         return restBaseUrl;
+    }
+    public String[] getExcludeIp() {
+        return excludeIp;
     }
     
     

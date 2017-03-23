@@ -9,7 +9,7 @@
 <!-- head -->
 <div th:include="common/json/jsoncss :: jsoncss" th:remove="tag" />
 </head>
-<body th:with="ancestorCode='TOOLS',parentCode='TOOLS',code='LOG'">
+<body th:with="ancestorCode='LOGCOUNT',parentCode='LOGCOUNT',code='ACTIVELOG'">
 	<!-- header -->
 	<div th:include="common/header :: header" th:remove="tag" />
 	<!-- nav -->
@@ -41,14 +41,14 @@
 
 			option = {
 				title : {
-					text : '在线直播人数',
+					text : '在线访问人数',
 					subtext : ''
 				},
 				tooltip : {
 					trigger : 'axis'
 				},
 				legend : {
-					data : [ '在线人数', '预购队列' ]
+					data : [ '在线人数', '操作队列' ]
 				},
 
 				dataZoom : {
@@ -86,16 +86,16 @@
 				yAxis : [ {
 					type : 'value',
 					scale : true,
-					name : '价格',
+					name : '个数',
 					boundaryGap : [ 0.2, 0.2 ]
 				}, {
 					type : 'value',
 					scale : true,
-					name : '预购量',
+					name : '操作量',
 					boundaryGap : [ 0.2, 0.2 ]
 				} ],
 				series : [ {
-					name : '预购队列',
+					name : '操作队列',
 					type : 'bar',
 					xAxisIndex : 1,
 					yAxisIndex : 1,

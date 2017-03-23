@@ -9,13 +9,19 @@
 <!-- head -->
 <div th:include="common/json/jsoncss :: jsoncss" th:remove="tag" />
 </head>
-<body th:with="ancestorCode='LOGCOUNT',parentCode='LOGCOUNT',code='5dayaccess'">
+<body th:with="ancestorCode='LOGCOUNT',parentCode='LOGCOUNT',code='LOGIP'">
 	<!-- header -->
 	<div th:include="common/header :: header" th:remove="tag" />
 	<!-- nav -->
 	<div th:include="common/nav :: nav" th:remove="tag" />
+	
 
 	<div class="container">
+	<ul class="nav nav-tabs">
+	  <li role="presentation" th:class="${siteSource} ? '':'active' "><a href="/log/logIp">全部</a></li>
+	  <li role="presentation" th:class="(${siteSource} eq 'bootstrap') ? 'active':'' " ><a href="/log/logIp/bootstrap">bootstrap</a></li>
+	  <li role="presentation" th:class="(${siteSource} eq 'dbconn') ? 'active':'' "><a href="/log/logIp/dbconn">dbconn</a></li>
+	</ul>
 		  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     		<div id="main" style="height:600px"></div>
     		
@@ -32,24 +38,31 @@
 require(
     [
         'echarts',
-        'echarts/chart/bar',// 使用柱状图就加载bar模块，按需加载
-        'echarts/chart/line'
+        'echarts/chart/pie',// 使用柱状图就加载bar模块，按需加载
+        'echarts/chart/funnel'
     ],
     function (ec) {
     	// 基于准备好的dom，初始化echarts图表
         var myChart = ec.init(document.getElementById('main')); 
     	var eChartPojo=[[${eChartPojo}]];
-    	var days=eChartPojo.axisCategory.length;
-    	var length=eChartPojo.axisCategory.push('访问量(人次)');//push 返回 数组长度
+        
+        var seriesData=new Array();
+        $.each(eChartPojo.seriesDatas, function(i) {  
+        	seriesData.push({value:eChartPojo.seriesDatas[i].series,name:eChartPojo.seriesDatas[i].legend});
+        }); 
         var option = {
         	    title : {
-        	        text: '最近'+days+'天访问量',
-        	        subtext: '数据来自日志统计'
+        	        text: '全站用户访问来源',
+        	        subtext: '日志统计',
+        	        x:'center'
         	    },
         	    tooltip : {
-        	        trigger: 'axis'
+        	        trigger: 'item',
+        	        formatter: "{a} <br/>{b} : {c} ({d}%)"
         	    },
         	    legend: {
+        	        orient : 'vertical',
+        	        x : 'left',
         	        data:eChartPojo.legends
         	    },
         	    toolbox: {
@@ -57,34 +70,30 @@ require(
         	        feature : {
         	            mark : {show: true},
         	            dataView : {show: true, readOnly: false},
-        	            magicType: {show: true, type: ['line', 'bar']},
+        	            magicType : {
+        	                show: true, 
+        	                type: ['pie', 'funnel'],
+        	                option: {
+        	                    funnel: {
+        	                        x: '25%',
+        	                        width: '50%',
+        	                        funnelAlign: 'left',
+        	                        max: 1548
+        	                    }
+        	                }
+        	            },
         	            restore : {show: true},
         	            saveAsImage : {show: true}
         	        }
         	    },
         	    calculable : true,
-        	    xAxis : [
-        	        {
-        	        	type : 'value',
-        	            boundaryGap : [0, 0.01]
-        	        }
-        	    ],
-        	    yAxis : [
-        	        {
-        	        	type : 'category',
-        	            data : eChartPojo.axisCategory
-        	        }
-        	    ],
         	    series : [
         	        {
-        	            name:eChartPojo.seriesDatas[0].legend,
-        	            type:'bar',
-        	            data:eChartPojo.seriesDatas[0].series
-        	        },
-        	        {
-        	            name:eChartPojo.seriesDatas[1].legend,
-        	            type:'bar',
-        	            data:eChartPojo.seriesDatas[1].series
+        	            name:'访问来源',
+        	            type:'pie',
+        	            radius : '55%',
+        	            center: ['50%', '60%'],
+        	            data: seriesData
         	        }
         	    ]
         	};

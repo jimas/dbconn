@@ -1,6 +1,8 @@
 package com.jimas.dbconn.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +14,7 @@ import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +29,7 @@ import com.jimas.dbconn.api.response.LogStatisticsRs;
 import com.jimas.dbconn.interceptor.MenuModel;
 import com.jimas.dbconn.pojo.EChartPojo;
 import com.jimas.dbconn.pojo.SeriesData;
+import com.jimas.dbconn.sourceconfig.ParamsConfig;
 
 @Controller
 @RequestMapping("/log")
@@ -33,14 +37,44 @@ public class LogCountController extends BaseController {
 
     @Autowired
     private LogApi logApi;
+    @Autowired
+    private ParamsConfig paramsConfig;
 
-    public String logCount(HttpServletRequest request, HttpServletResponse response, ModelMap map, String logAction) {
-
+    @RequestMapping({"/logIp/{siteSource}","/logIp"})
+    @MenuModel
+    public String logIpCount(HttpServletRequest request, HttpServletResponse response, ModelMap map ,@PathVariable(required=false) String siteSource) {
         LogIpRq logIpRq = new LogIpRq();
-        logIpRq.setSiteSource(logAction);
-        ResultVo<List<LogIpCountRs>> rs = logApi.logSiteIpCount(logIpRq);
-        map.put("logIpRsList", rs.getResult());
-        return "pages/log";
+        logIpRq.setSiteSource(siteSource);
+        logIpRq.setRemoveIpList(Arrays.asList(paramsConfig.getExcludeIp()));
+        logIpRq.setStart(DateUtils.addDays(new Date(), -6));
+        logIpRq.setEnd(new Date());
+        ResultVo<List<LogIpCountRs>> dbconnRs = logApi.logSiteIpCount(logIpRq);
+        List<LogIpCountRs> result = dbconnRs.getResult();
+                result.sort(new Comparator<LogIpCountRs>() {
+                    @Override
+                    public int compare(LogIpCountRs o1, LogIpCountRs o2) {
+                        return o1.getOperateDate().before(o2.getOperateDate())?1:(o1.getOperateDate().equals(o2.getOperateDate())?0:-1);
+                    }
+                    
+                });
+        String[] legends=new String[result.size()];
+        List<SeriesData> seriesDatas=new ArrayList<SeriesData>();
+        int ii=0;
+        for (LogIpCountRs logIpCountRs : result) {
+            legends[ii++]=logIpCountRs.getId();
+            SeriesData seriesData = new SeriesData();
+            seriesData.setLegend(logIpCountRs.getId());
+            String[] series=new String[]{logIpCountRs.getAccess_count()+""};
+            seriesData.setSeries(series);
+            seriesDatas.add(seriesData);
+        }
+        
+        EChartPojo eChartPojo = new EChartPojo();
+        eChartPojo.setLegends(legends);
+        eChartPojo.setSeriesDatas(seriesDatas);
+        map.put("eChartPojo", eChartPojo);
+        map.put("siteSource", siteSource);
+        return "pages/logIp";
     }
 
     @RequestMapping("/logDay")
@@ -158,7 +192,6 @@ public class LogCountController extends BaseController {
         }
         return series;
     }
-    
     private LogStatisticsRs getDayLog(List<LogStatisticsRs> todayLogList, Date today, String siteSource) {
         for (LogStatisticsRs logStatisticsRs : todayLogList) {
             if(logStatisticsRs.getSiteSource().equals(siteSource)){
