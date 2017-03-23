@@ -36,16 +36,46 @@
                     "menuUrl":"/word",
                     "sortStr":"C3",
                     "level":2
+                }
+            ]
+        },
+        {
+            "menuName":"日志统计",
+            "menuCode":"LOGCOUNT",
+            "parentCode" : "LOGCOUNT", 
+            "ancestorCode" : "LOGCOUNT", 
+            "menuUrl":"#",
+            "sortStr":"B",
+            "level":1,
+            "subMenuList":[
+                {
+                    "menuName":"5天访问量",
+                    "menuCode":"5dayaccess",
+		            "parentCode" : "LOGCOUNT", 
+		            "ancestorCode" : "LOGCOUNT", 
+                    "menuUrl":"/log/logDay",
+                    "sortStr":"B1",
+                    "level":2
                 },
                 {
-                    "menuName":"日志统计",
-                    "menuCode":"LOG",
-		            "parentCode" : "TOOLS", 
-		            "ancestorCode" : "TOOLS", 
-                    "menuUrl":"/log/logDay",
-                    "sortStr":"C4",
+                    "menuName":"实时动态",
+                    "menuCode":"ACTIVELOG",
+		            "parentCode" : "LOGCOUNT", 
+		            "ancestorCode" : "LOGCOUNT", 
+                    "menuUrl":"/log/logActiveDay",
+                    "sortStr":"B2",
+                    "level":2
+                },
+                {
+                    "menuName":"最多访问的IP",
+                    "menuCode":"LOGIP",
+		            "parentCode" : "LOGCOUNT", 
+		            "ancestorCode" : "LOGCOUNT", 
+                    "menuUrl":"/log/logIp",
+                    "sortStr":"B3",
                     "level":2
                 }
+                
             ]
         },
         {
