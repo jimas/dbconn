@@ -112,6 +112,16 @@
                     "sortStr" : "A1", 
                     "icon" : "icon-user", 
                     "level" : "2"
+                },
+                {
+                    "menuName" : "菜单列表", 
+                    "menuCode" : "menuList", 
+                    "parentCode" : "Dashboard", 
+                    "ancestorCode" : "Dashboard", 
+                    "menuUrl" : "/showMenuList", 
+                    "sortStr" : "A2", 
+                    "icon" : "icon-user", 
+                    "level" : "2"
                 }
             ]
         }, 

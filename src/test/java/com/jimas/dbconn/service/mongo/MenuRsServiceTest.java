@@ -91,7 +91,7 @@ public class MenuRsServiceTest extends BaseTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetMenuRsBySiteSource() {
-        String siteSource="dbconn";
+        String siteSource="bootstrap";
         BaseKeyReq<String> baseKeyReq = new BaseKeyReq<String>();
         baseKeyReq.setSiteSource(siteSource);
         String json = restService.postHttp(UrlEnum.MENU_QUERY, baseKeyReq,siteSource);
